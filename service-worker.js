@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sed-upel-shell-v1';
+const CACHE_NAME = 'sed-upel-shell-v2';
 const SHELL = [
   './',
   './index.html',
