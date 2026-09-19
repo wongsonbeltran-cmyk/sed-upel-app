@@ -1,0 +1,26 @@
+{
+  "name": "SED UPEL Maturín",
+  "short_name": "SED UPEL",
+  "description": "Sistema de Emisión de Documentos - UPEL Maturín",
+  "lang": "es-VE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0047BB",
+  "theme_color": "#0047BB",
+  "icons": [
+    {
+      "src": "./icons/sed-upel-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/sed-upel-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
