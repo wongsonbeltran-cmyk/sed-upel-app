@@ -3,184 +3,674 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
   <meta name="theme-color" content="#0047BB">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="SED UPEL">
+  <meta name="application-name" content="SED UPEL">
   <meta name="description" content="Sistema de Emisión de Documentos - UPEL Maturín">
+
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/sed-upel-icon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/sed-upel-icon-180.png">
+
   <title>SED UPEL Maturín</title>
+
   <style>
-    :root{--blue:#0047BB;--green:#009A44;--ink:#0b1220;--muted:#5d6675}
+    :root{
+      --blue:#0047BB;
+      --green:#009A44;
+      --ink:#0b1220;
+      --muted:#5d6675
+    }
+
     *{box-sizing:border-box}
-    html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial,Helvetica,sans-serif;background:#eef3f9}
-    #topbar{height:58px;background:rgba(255,255,255,.98);border-bottom:1px solid rgba(0,71,187,.12);display:flex;align-items:center;padding:0 12px;gap:10px;position:relative;z-index:10000;box-shadow:0 3px 18px rgba(0,33,91,.10);padding-top:env(safe-area-inset-top)}
-    .brand{display:flex;align-items:center;gap:9px;min-width:0}
-    .brand img{width:36px;height:36px;border-radius:10px;object-fit:cover}
-    .brand strong{font-size:13px;color:var(--blue);white-space:nowrap}
-    .brand span{display:block;font-size:9px;color:var(--muted);white-space:nowrap}
+
+    html,body{
+      margin:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family:Arial,Helvetica,sans-serif;
+      background:#eef3f9
+    }
+
+    #topbar{
+      height:58px;
+      background:rgba(255,255,255,.98);
+      border-bottom:1px solid rgba(0,71,187,.12);
+      display:flex;
+      align-items:center;
+      padding:0 12px;
+      gap:10px;
+      position:relative;
+      z-index:10000;
+      box-shadow:0 3px 18px rgba(0,33,91,.10);
+      padding-top:env(safe-area-inset-top)
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-width:0
+    }
+
+    .brand img{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      object-fit:cover
+    }
+
+    .brand strong{
+      font-size:13px;
+      color:var(--blue);
+      white-space:nowrap
+    }
+
+    .brand span{
+      display:block;
+      font-size:9px;
+      color:var(--muted);
+      white-space:nowrap
+    }
+
     .spacer{flex:1}
-    #installBtn{display:none;border:0;border-radius:999px;background:var(--green);color:white;font-weight:800;font-size:12px;padding:10px 14px;cursor:pointer;box-shadow:0 8px 18px rgba(0,154,68,.25)}
-    #openBtn{border:1px solid rgba(0,71,187,.15);border-radius:999px;background:#fff;color:var(--blue);font-weight:800;font-size:11px;padding:9px 12px;cursor:pointer;display:none}
-    #appFrame{display:block;width:100%;height:calc(100% - 58px);height:calc(100% - 58px - env(safe-area-inset-top));border:0;background:white}
-    #installModal{display:none;position:fixed;inset:0;z-index:20000;background:rgba(0,20,52,.62);backdrop-filter:blur(9px);align-items:center;justify-content:center;padding:20px}
-    .modal{width:min(430px,94vw);background:#fff;border-radius:24px;padding:26px;box-shadow:0 28px 80px rgba(0,0,0,.26)}
-    .modalIcon{width:68px;height:68px;border-radius:18px;object-fit:cover;box-shadow:0 8px 22px rgba(0,33,91,.15);margin-bottom:14px}
-    .eyebrow{font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:var(--green)}
-    h1{font-size:26px;color:var(--blue);font-weight:700;margin:7px 0 8px}
-    p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 16px}
-    .steps{background:#f6f9fd;border:1px solid #e4eaf2;border-radius:16px;padding:14px 16px;color:var(--ink);font-size:13px;line-height:1.6}
-    .actions{display:flex;gap:10px;margin-top:18px}
-    .actions button{flex:1;min-height:46px;border:0;border-radius:13px;font-weight:800;cursor:pointer}
-    .primary{background:var(--blue);color:#fff}
-    .secondary{background:#eef1f5;color:#28415f}
-    #desktopNotice{display:none;position:fixed;left:50%;top:76px;transform:translateX(-50%);z-index:21000;width:min(440px,92vw);background:#fff;border:1px solid rgba(0,71,187,.12);border-radius:16px;padding:14px 16px;box-shadow:0 16px 45px rgba(0,33,91,.17);font-size:13px;color:var(--muted)}
-    #desktopNotice b{color:var(--blue)}
+
+    #installBtn{
+      display:none;
+      border:0;
+      border-radius:999px;
+      background:var(--green);
+      color:white;
+      font-weight:800;
+      font-size:12px;
+      padding:10px 14px;
+      cursor:pointer;
+      box-shadow:0 8px 18px rgba(0,154,68,.25)
+    }
+
+    #appFrame{
+      display:block;
+      width:100%;
+      height:calc(100% - 58px);
+      height:calc(100% - 58px - env(safe-area-inset-top));
+      border:0;
+      background:white
+    }
+
+    #installModal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:20000;
+      background:rgba(0,20,52,.62);
+      backdrop-filter:blur(9px);
+      align-items:center;
+      justify-content:center;
+      padding:20px
+    }
+
+    .modal{
+      width:min(430px,94vw);
+      background:#fff;
+      border-radius:24px;
+      padding:26px;
+      box-shadow:0 28px 80px rgba(0,0,0,.26)
+    }
+
+    .modalIcon{
+      width:68px;
+      height:68px;
+      border-radius:18px;
+      object-fit:cover;
+      box-shadow:0 8px 22px rgba(0,33,91,.15);
+      margin-bottom:14px
+    }
+
+    .eyebrow{
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+      color:var(--green)
+    }
+
+    h1{
+      font-size:26px;
+      color:var(--blue);
+      font-weight:700;
+      margin:7px 0 8px
+    }
+
+    p{
+      font-size:14px;
+      line-height:1.55;
+      color:var(--muted);
+      margin:0 0 16px
+    }
+
+    .steps{
+      background:#f6f9fd;
+      border:1px solid #e4eaf2;
+      border-radius:16px;
+      padding:14px 16px;
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.6
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:18px
+    }
+
+    .actions button{
+      flex:1;
+      min-height:46px;
+      border:0;
+      border-radius:13px;
+      font-weight:800;
+      cursor:pointer
+    }
+
+    .primary{
+      background:var(--blue);
+      color:#fff
+    }
+
+    .secondary{
+      background:#eef1f5;
+      color:#28415f
+    }
+
+    #appFallback{
+      display:none;
+      position:fixed;
+      left:50%;
+      top:78px;
+      transform:translateX(-50%);
+      z-index:19000;
+      width:min(460px,92vw);
+      background:#fff;
+      border:1px solid rgba(0,71,187,.12);
+      border-radius:16px;
+      padding:14px 16px;
+      box-shadow:0 16px 45px rgba(0,33,91,.17);
+      font-size:13px;
+      color:var(--muted)
+    }
+
+    #appFallback b{color:var(--blue)}
+
     @media (max-width:650px){
-      #openBtn{display:none!important}
       #topbar{height:58px}
       .brand span{display:none}
     }
+
     @media (min-width:651px){
       #topbar{height:64px}
       #installBtn{display:none!important}
-      .brand img{width:40px;height:40px}
+      .brand img{
+        width:40px;
+        height:40px
+      }
+      #appFrame{
+        height:calc(100% - 64px)
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header id="topbar">
     <div class="brand">
       <img src="./icons/sed-upel-icon-180.png" alt="SED UPEL">
-      <div><strong>SED UPEL</strong><span>Sistema de Emisión de Documentos · Maturín</span></div>
+      <div>
+        <strong>SED UPEL</strong>
+        <span>Sistema de Emisión de Documentos · Maturín</span>
+      </div>
     </div>
+
     <div class="spacer"></div>
-    <button id="installBtn" type="button" aria-label="Instalar SED UPEL">📱 Instalar App</button>
+
+    <button id="installBtn" type="button" aria-label="Instalar SED UPEL">
+      📱 Instalar App
+    </button>
   </header>
 
-  <iframe id="appFrame" title="SED UPEL" allow="clipboard-read; clipboard-write; downloads"></iframe>
+  <iframe
+    id="appFrame"
+    title="SED UPEL"
+    allow="clipboard-read; clipboard-write; downloads"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
 
-  <div id="installModal">
+  <div id="appFallback">
+    No fue posible mostrar el SED dentro de esta ventana.
+    <b>Usa el botón de instalación</b> o abre el SED directamente desde el navegador.
+  </div>
+
+  <div id="installModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
-      <img class="modalIcon" src="./icons/sed-upel-icon-192.png" alt="SED UPEL">
+
+      <img
+        class="modalIcon"
+        src="./icons/sed-upel-icon-192.png"
+        alt="SED UPEL">
+
       <div class="eyebrow">SED UPEL Maturín</div>
+
       <h1 id="modalTitle">Instalar la aplicación</h1>
-      <p id="modalText">Instala SED UPEL en tu teléfono para acceder desde la pantalla de inicio.</p>
-      <div id="androidSteps" class="steps" style="display:none">
-        Android: pulsa <b>Instalar aplicación</b>. Si Chrome no muestra el botón, abre el menú <b>⋮</b> y busca <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>.
-      </div>
+
+      <p id="modalText">
+        Instala SED UPEL en tu teléfono para acceder desde la pantalla de inicio.
+      </p>
+
+      <div id="androidSteps" class="steps" style="display:none"></div>
+
       <div id="iosSteps" class="steps" style="display:none">
-        iPhone/iPad: pulsa <b>Compartir</b> → <b>Añadir a pantalla de inicio</b> → <b>Añadir</b>.
+        En iPhone/iPad pulsa <b>Compartir</b> →
+        <b>Añadir a pantalla de inicio</b> → <b>Añadir</b>.
       </div>
+
       <div id="genericSteps" class="steps" style="display:none">
         Usa el menú del navegador para añadir SED UPEL a la pantalla de inicio.
       </div>
+
       <div class="actions">
-        <button id="nativeInstallAction" class="primary" type="button" style="display:none">Instalar ahora</button>
-        <button id="closeInstall" class="secondary" type="button">Cerrar</button>
+        <button id="nativeInstallAction" class="primary" type="button" style="display:none">
+          Instalar ahora
+        </button>
+
+        <button id="closeInstall" class="secondary" type="button">
+          Cerrar
+        </button>
       </div>
+
     </div>
   </div>
 
-  <div id="desktopNotice">Estás usando un computador. La opción <b>Instalar App</b> se reserva para teléfonos. En PC puedes crear un acceso directo desde el menú del navegador.</div>
-
   <script src="./config.js"></script>
+
   <script>
     (function(){
+
       const frame = document.getElementById('appFrame');
       const installBtn = document.getElementById('installBtn');
       const installModal = document.getElementById('installModal');
       const closeInstall = document.getElementById('closeInstall');
       const nativeInstallAction = document.getElementById('nativeInstallAction');
+
       const androidSteps = document.getElementById('androidSteps');
       const iosSteps = document.getElementById('iosSteps');
       const genericSteps = document.getElementById('genericSteps');
-      const desktopNotice = document.getElementById('desktopNotice');
+      const appFallback = document.getElementById('appFallback');
+
       const isAndroid = /Android/i.test(navigator.userAgent);
-      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isMobile = isAndroid || isIOS || /Mobile/i.test(navigator.userAgent);
+
+      const isIOS =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (
+          navigator.platform === 'MacIntel' &&
+          navigator.maxTouchPoints > 1
+        );
+
+      const isMobile =
+        isAndroid ||
+        isIOS ||
+        /Mobile/i.test(navigator.userAgent);
+
       let deferredPrompt = null;
 
-      frame.src = SED_APPS_SCRIPT_URL;
+      /*
+       * ---------------------------------------------------------
+       * CARGA DEL SED
+       * ---------------------------------------------------------
+       */
+      if (
+        typeof SED_APPS_SCRIPT_URL === 'string' &&
+        SED_APPS_SCRIPT_URL.trim()
+      ) {
 
-      function isStandalone(){
-        return window.matchMedia && window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        frame.src = SED_APPS_SCRIPT_URL;
+
+        frame.addEventListener('load', function(){
+          appFallback.style.display = 'none';
+        });
+
+        /*
+         * Si el iframe no carga, mostramos un aviso.
+         * No interferimos con el funcionamiento normal.
+         */
+        setTimeout(function(){
+
+          try {
+
+            if (
+              !frame.contentWindow ||
+              !frame.contentWindow.location
+            ) {
+              appFallback.style.display = 'block';
+            }
+
+          } catch(e) {
+            /*
+             * Cross-origin: que el iframe exista ya es suficiente
+             * para no mostrar un mensaje falso.
+             */
+          }
+
+        }, 7000);
+
       }
 
-      function updateInstallVisibility(){
+      /*
+       * ---------------------------------------------------------
+       * ¿YA ESTÁ INSTALADA?
+       * ---------------------------------------------------------
+       */
+      function isStandalone(){
+
+        const displayStandalone =
+          window.matchMedia &&
+          window.matchMedia('(display-mode: standalone)').matches;
+
+        const iosStandalone =
+          window.navigator.standalone === true;
+
+        return displayStandalone || iosStandalone;
+      }
+
+      /*
+       * ---------------------------------------------------------
+       * ACTUALIZAR BOTÓN
+       * ---------------------------------------------------------
+       */
+      function updateInstallButton(){
+
         if (isStandalone()) {
           installBtn.style.display = 'none';
           return;
         }
-        if (isMobile) {
-          installBtn.style.display = 'inline-flex';
-        } else {
+
+        if (!isMobile) {
           installBtn.style.display = 'none';
+          return;
         }
+
+        /*
+         * Android:
+         *
+         * Solo llamaremos al instalador nativo si Chrome
+         * realmente nos entregó beforeinstallprompt.
+         */
+        if (isAndroid) {
+
+          if (deferredPrompt) {
+
+            installBtn.textContent = '📱 Instalar App';
+
+          } else {
+
+            installBtn.textContent = '📱 Cómo instalar';
+
+          }
+
+          installBtn.style.display = 'inline-flex';
+          return;
+        }
+
+        /*
+         * iPhone / iPad
+         */
+        if (isIOS) {
+
+          installBtn.textContent =
+            '📱 Añadir a pantalla de inicio';
+
+          installBtn.style.display = 'inline-flex';
+          return;
+        }
+
+        /*
+         * Otros móviles
+         */
+        installBtn.textContent = '📱 Cómo instalar';
+        installBtn.style.display = 'inline-flex';
       }
 
+      /*
+       * ---------------------------------------------------------
+       * ABRIR MODAL
+       * ---------------------------------------------------------
+       */
       function openInstallModal(){
+
         androidSteps.style.display = 'none';
         iosSteps.style.display = 'none';
         genericSteps.style.display = 'none';
         nativeInstallAction.style.display = 'none';
 
         if (isAndroid) {
+
           androidSteps.style.display = 'block';
-          if (deferredPrompt) nativeInstallAction.style.display = 'block';
+
+          if (deferredPrompt) {
+
+            androidSteps.innerHTML =
+              'Chrome ya habilitó la instalación de SED UPEL. ' +
+              'Pulsa <b>Instalar ahora</b> para continuar.';
+
+            nativeInstallAction.style.display = 'block';
+
+          } else {
+
+            androidSteps.innerHTML =
+              'Chrome todavía no ha habilitado el instalador automático. ' +
+              'Puedes seguir usando el SED y volver a intentarlo. ' +
+              'También puedes abrir el menú <b>⋮</b> de Chrome y buscar ' +
+              '<b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>.';
+          }
+
         } else if (isIOS) {
+
           iosSteps.style.display = 'block';
+
         } else {
+
           genericSteps.style.display = 'block';
+
         }
+
         installModal.style.display = 'flex';
       }
 
+      /*
+       * ---------------------------------------------------------
+       * INSTALACIÓN NATIVA
+       * ---------------------------------------------------------
+       */
       async function installNative(){
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        try { await deferredPrompt.userChoice; } catch(e) {}
+
+        if (!deferredPrompt) {
+
+          openInstallModal();
+          return;
+        }
+
+        try {
+
+          deferredPrompt.prompt();
+
+          const result =
+            await deferredPrompt.userChoice;
+
+          if (
+            result &&
+            result.outcome === 'accepted'
+          ) {
+
+            console.log(
+              'Instalación SED UPEL aceptada.'
+            );
+
+          } else {
+
+            console.log(
+              'Instalación SED UPEL cancelada.'
+            );
+
+          }
+
+        } catch(error) {
+
+          console.warn(
+            'No fue posible abrir el instalador nativo:',
+            error
+          );
+        }
+
         deferredPrompt = null;
+
         installModal.style.display = 'none';
-        updateInstallVisibility();
+
+        updateInstallButton();
       }
 
-      window.addEventListener('beforeinstallprompt', function(e){
-        e.preventDefault();
-        deferredPrompt = e;
-        updateInstallVisibility();
-      });
+      /*
+       * ---------------------------------------------------------
+       * CHROME: EVENTO REAL DE INSTALACIÓN
+       * ---------------------------------------------------------
+       */
+      window.addEventListener(
+        'beforeinstallprompt',
+        function(event){
 
-      window.addEventListener('appinstalled', function(){
-        deferredPrompt = null;
-        installModal.style.display = 'none';
-        updateInstallVisibility();
-      });
+          /*
+           * Evitamos el mini-infobar automático y guardamos
+           * el evento para nuestro botón.
+           */
+          event.preventDefault();
 
-      installBtn.addEventListener('click', openInstallModal);
-      nativeInstallAction.addEventListener('click', installNative);
-      closeInstall.addEventListener('click', function(){ installModal.style.display = 'none'; });
-      installModal.addEventListener('click', function(e){ if (e.target === installModal) installModal.style.display = 'none'; });
+          deferredPrompt = event;
 
-      if (!isMobile && !isStandalone()) {
-        // No mostramos ningún botón de instalación en PC.
-        // El aviso se usa solo si alguien intenta forzar la instalación desde consola/botones.
-      }
+          console.log(
+            'Chrome habilitó la instalación de SED UPEL.'
+          );
 
-      window.addEventListener('resize', updateInstallVisibility, {passive:true});
-      updateInstallVisibility();
+          updateInstallButton();
+        }
+      );
 
+      /*
+       * ---------------------------------------------------------
+       * APLICACIÓN INSTALADA
+       * ---------------------------------------------------------
+       */
+      window.addEventListener(
+        'appinstalled',
+        function(){
+
+          console.log(
+            'SED UPEL quedó instalado.'
+          );
+
+          deferredPrompt = null;
+
+          installModal.style.display = 'none';
+
+          updateInstallButton();
+        }
+      );
+
+      /*
+       * ---------------------------------------------------------
+       * BOTONES
+       * ---------------------------------------------------------
+       */
+      installBtn.addEventListener(
+        'click',
+        openInstallModal
+      );
+
+      nativeInstallAction.addEventListener(
+        'click',
+        installNative
+      );
+
+      closeInstall.addEventListener(
+        'click',
+        function(){
+          installModal.style.display = 'none';
+        }
+      );
+
+      installModal.addEventListener(
+        'click',
+        function(event){
+
+          if (event.target === installModal) {
+            installModal.style.display = 'none';
+          }
+
+        }
+      );
+
+      /*
+       * ---------------------------------------------------------
+       * SERVICE WORKER
+       * ---------------------------------------------------------
+       */
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function(){
-          navigator.serviceWorker.register('./service-worker.js').catch(function(err){
-            console.warn('No fue posible registrar el service worker:', err);
-          });
-        });
+
+        window.addEventListener(
+          'load',
+          function(){
+
+            navigator.serviceWorker
+              .register('./service-worker.js')
+              .then(function(registration){
+
+                console.log(
+                  'Service Worker registrado:',
+                  registration.scope
+                );
+
+              })
+              .catch(function(error){
+
+                console.warn(
+                  'No fue posible registrar el Service Worker:',
+                  error
+                );
+
+              });
+
+          }
+        );
       }
+
+      /*
+       * ---------------------------------------------------------
+       * INICIALIZACIÓN
+       * ---------------------------------------------------------
+       */
+      updateInstallButton();
+
+      window.addEventListener(
+        'resize',
+        updateInstallButton,
+        {passive:true}
+      );
+
     })();
   </script>
+
 </body>
 </html>
